@@ -457,4 +457,4 @@ class nsAHKHID {
 }
 
 ; publish namespace
-AHKHID := new nsAHKHID()
+global AHKHID := new nsAHKHID()

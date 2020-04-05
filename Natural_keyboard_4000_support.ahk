@@ -44,15 +44,12 @@ class TMsNatural4000
                                    , 0x0100000000000000: "MsNatural4000_KeyUp" }
 
     __New() {
-        global AHKHID
         OnMessage(0x00FF, ObjBindMethod(this, "HandleInputMessage")) ; subscrube for WM_INPUT
         AHKHID.Register(12, 1, A_ScriptHwnd, AHKHID.RIDEV_INPUTSINK) ; the keyboard has UsagePage=12 and Usage=1
     }
 
     HandleInputMessage(wParam, lParam) {
         Critical ; otherwise you can get ERROR_INVALID_HANDLE
-
-        global AHKHID
 
         ; if the event came from not a HID device we don't need to handle it
         devType := AHKHID.GetInputInfo(lParam, AHKHID.II_DEVTYPE)
@@ -125,5 +122,5 @@ class TMsNatural4000
     }
 }
 
-MsNatural4000 := new TMsNatural4000()
+global MsNatural4000 := new TMsNatural4000()
 
