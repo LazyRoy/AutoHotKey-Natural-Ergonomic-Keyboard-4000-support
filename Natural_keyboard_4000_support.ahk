@@ -51,6 +51,10 @@ class TMsNatural4000
     HandleInputMessage(wParam, lParam) {
         Critical ; otherwise you can get ERROR_INVALID_HANDLE
 
+        if A_IsSuspended { ; AHK is suspended, skip the key
+            return
+        }
+
         ; if the event came from not a HID device we don't need to handle it
         devType := AHKHID.GetInputInfo(lParam, AHKHID.II_DEVTYPE)
         if (devType != AHKHID.RIM_TYPEHID) {
